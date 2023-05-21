@@ -1,11 +1,11 @@
-red_cards_players = input().split(" ")
+red_cards_players = input().split()
 
-a_team = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-b_team = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+a_team = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
+b_team = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 for red_card in red_cards_players:
     red_card_list = red_card.split("-")
-    card_number = int(red_card_list[1])
+    card_number = red_card_list[1]
 
     if red_card_list[0] == "A" and card_number in a_team:
         a_team.remove(card_number)
