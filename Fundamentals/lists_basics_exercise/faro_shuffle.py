@@ -1,18 +1,14 @@
-items = input().split()
-shaffle_count = int(input())
+string = input().split()
+shuffle_count = int(input())
+start = string.pop(0)
+end = string.pop(-1)
 
-start = [items[0]]
-end = [items[-1]]
-items.pop(0)
-items.pop(-1)
+for _ in range(shuffle_count):
+    shuffled_string = []
 
-for _ in range(shaffle_count):
-    shuffled_deck = []
-    for (a, b) in zip(items[:len(items) // 2], items[len(items) // 2:]):
-        shuffled_deck.append(b)
-        shuffled_deck.append(a)
+    for (a, b) in zip(string[:len(string) // 2], string[len(string) // 2:]):
+        shuffled_string.append(b)
+        shuffled_string.append(a)
+    string = shuffled_string
 
-    items = shuffled_deck
-
-final_list = start + items + end
-print(final_list)
+print([start] + string + [end])
