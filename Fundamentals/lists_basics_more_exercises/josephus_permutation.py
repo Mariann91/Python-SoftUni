@@ -1,19 +1,17 @@
 people_list = input().split()
-kill_position = int(input()) - 1
+killed_position = int(input())
 
-kill_counter = 0
 killed_list = []
+counter, index = 0, 0
 while len(people_list) > 0:
-    kill_counter += kill_position
+    counter += 1
 
-    if kill_counter < len(people_list):
-        killed_list.append(people_list[kill_counter])
-        people_list.remove(people_list[kill_counter])
+    if counter % killed_position == 0:
+        killed_list.append(people_list.pop(index))
     else:
-        while kill_counter >= len(people_list):
-            kill_counter -= len(people_list)
+        index += 1
 
-        killed_list.append(people_list[kill_counter])
-        people_list.remove(people_list[kill_counter])
+    if len(people_list) <= index:
+        index = 0
 
 print(f"[{','.join(killed_list)}]")

@@ -1,21 +1,16 @@
-index_list = input().split()
-string_list = input()
+index_list = [num for num in input().split()]
+string_list = [letter for letter in input()]
 
-string_list = [letter for letter in string_list]
-string_max_index = len(string_list)
-
-output = ""
-
+output_word = ""
 for index in index_list:
-    index = [int(num) for num in index]
-    current_index = sum(index)
+    current_index_list = [int(num) for num in index]
+    current_index = sum(current_index_list)
 
-    if string_max_index > current_index:
-        output += string_list[current_index]
+    if current_index < len(string_list):
+        output_word += string_list[current_index]
         string_list.remove(string_list[current_index])
     else:
-        new_index = current_index - string_max_index
-        output += string_list[new_index]
+        new_index = current_index - len(string_list)
+        output_word += string_list[new_index]
         string_list.remove(string_list[new_index])
-
-print(output)
+print(output_word)

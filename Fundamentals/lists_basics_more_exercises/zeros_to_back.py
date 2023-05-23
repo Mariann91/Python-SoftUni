@@ -1,10 +1,8 @@
-int_list = input().split(", ")
+int_list = [int(num) for num in input().split(", ")]
 
-for index in range(len(int_list)):
+zeros_counter = int_list.count(0)
+int_list = [num for num in int_list if num != 0]
 
-    if int_list[index] == "0":
-        int_list.remove(int_list[index])
-        int_list.append("0")
-
-int_list = [int(num) for num in int_list]
+for _ in range(zeros_counter):
+    int_list.append(0)
 print(int_list)
