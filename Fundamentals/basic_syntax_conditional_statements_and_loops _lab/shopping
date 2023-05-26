@@ -1,0 +1,16 @@
+budget = int(input())
+
+while True:
+  current_price = input()
+
+  if current_price == "End":
+    print("You bought everything needed.")
+    break
+  current_price = int(current_price)
+
+  if budget >= current_price:
+    budget -= current_price
+  else:
+    print("You went in overdraft!")
+    break
+    
