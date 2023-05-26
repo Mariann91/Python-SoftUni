@@ -1,0 +1,7 @@
+interval = int(input())
+
+for index in range(1, interval +1):
+  print("*" * index)
+for index in range(interval - 1, 0, -1):
+  print("*" * index)
+  
