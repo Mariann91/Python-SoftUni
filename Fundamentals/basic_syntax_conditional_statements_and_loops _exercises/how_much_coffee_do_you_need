@@ -1,0 +1,22 @@
+events = ["coding", "dog", "cat", "movie", "CODING", "DOG", "CAT", "MOVIE"]
+coffee_count = 0
+while True:
+  command = input()
+
+  if command == "END":
+    break
+
+  if command not in events:
+    continue
+  else:
+    if command.isupper():
+      coffee_count += 2
+      
+    if command.islower():
+      coffee_count += 1
+      
+if coffee_count > 5:
+  print("You need extra sleep")
+else:
+  print(coffee_count)
+  
