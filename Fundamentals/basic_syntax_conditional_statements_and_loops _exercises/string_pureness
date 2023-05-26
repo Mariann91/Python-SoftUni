@@ -1,0 +1,10 @@
+interval = int(input())
+
+for _ in range(interval):
+  string = input()
+
+  if string.isalnum():
+    print(f"{string} is pure.")
+  else:
+    print(f"{string} is not pure!")
+    
