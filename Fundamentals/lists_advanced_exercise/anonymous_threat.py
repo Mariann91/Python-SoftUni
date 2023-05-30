@@ -1,40 +1,49 @@
-# start_list = input().split()
+# start_string = input().split()
 #
 # command = input()
 #
 # while command != "3:1":
 #     command_args = command.split()
-#     command_word = command_args[0]
+#     command_line = command_args[0]
+#     index = int(command_args[1])
+#     end_line = int(command_args[2])
 #
-#     if command_word == "merge":
-#         start_index = int(command_args[1])
-#         end_index = int(command_args[2])
-#
+#     if command_line == "merge":
+#         merge_word = ""
 #         new_list = []
-#         string = ""
-#         for i in range(len(start_list)):
-#             if start_index <= i <= end_index:
-#                 string += start_list[i]
+#
+#         for i in range(len(start_string)):
+#
+#             if index <= i <= end_line:
+#                 merge_word += start_string[i]
 #             else:
-#                 if string not in new_list:
-#                     new_list.append(string)
-#                 new_list.append(start_list[i])
-#     else:
-#         index = int(command_args[1])
-#         parts = int(command_args[2])
+#                 new_list.append(start_string[i])
+#
+#         new_list.insert(index, merge_word)
+#         start_string = new_list
 #
 #     command = input()
-#
-# print("".join(start_list))
 
-test = ["abcdef", "ghi", "jkl"]
-index = 0
-parts = 3
 
-seg_len = len(test[0])
-seg_list = [""] * parts
+example = ["abcdef", "ghi", "jkl"]
 
-print(max(len(test)))
+chars_per_item = len(example) / 3
+
+print(chars_per_item)
+
+for i in range(3):
+    example.insert(0, "")
+
+print(example)
+
+
+
+
+
+
+
+
+
 
 
 
