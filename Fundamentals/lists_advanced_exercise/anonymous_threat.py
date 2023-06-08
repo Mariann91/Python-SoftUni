@@ -1,40 +1,39 @@
-# start_string = input().split()
-#
-# command = input()
-#
-# while command != "3:1":
-#     command_args = command.split()
-#     command_line = command_args[0]
-#     index = int(command_args[1])
-#     end_line = int(command_args[2])
-#
-#     if command_line == "merge":
-#         merge_word = ""
-#         new_list = []
-#
-#         for i in range(len(start_string)):
-#
-#             if index <= i <= end_line:
-#                 merge_word += start_string[i]
-#             else:
-#                 new_list.append(start_string[i])
-#
-#         new_list.insert(index, merge_word)
-#         start_string = new_list
-#
-#     command = input()
+# abc, def, ghi
+
+def merge(input_list, start, end):
+    merge_word = ""
+    end = min(end, len(input_list) - 1)
+    if start > end:
+        start -= end
+    for index in range(start, end + 1):
+        merge_word += input_list[index]
+
+    for index in range(end + 1):
+        input_list.pop(0)
+
+    input_list.insert(start, merge_word)
+    return input_list
 
 
-example = ["abcdef", "ghi", "jkl"]
+input_words = input().split()
 
-chars_per_item = len(example) / 3
+command = input()
 
-print(chars_per_item)
+while command != "3:1":
 
-for i in range(3):
-    example.insert(0, "")
+    command = command.split()
+    start_index = int(command[1])
+    end_index = int(command[2])
 
-print(example)
+    new_list = merge(input_words, start_index, end_index)
+
+    command = input()
+
+print(new_list)
+
+
+
+
 
 
 
