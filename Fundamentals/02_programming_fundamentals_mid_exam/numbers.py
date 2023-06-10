@@ -17,4 +17,3 @@ if len(top5_average) == 0:
     print("No")
 else:
     print(*top5_average, sep=" ")
-
