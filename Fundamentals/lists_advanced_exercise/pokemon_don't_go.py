@@ -1,23 +1,33 @@
+def increase_decrease(input_list, value):
+    for i in range(len(input_list)):
+        if input_list[i] <= value:
+            input_list[i] += value
+        else:
+            input_list[i] -= value
+
+    return input_list
 
 
 pokemons = [int(num) for num in input().split()]
 
-captured_pokemons = []
+removed_pokemons = []
 while len(pokemons) > 0:
-    index = int(input())
+    current_index = int(input())
 
-    if index < 0:
-        captured_pokemons.append(pokemons[0])
-        pokemons.remove(pokemons[0])
+    if current_index < 0:
+        value_to_compare = pokemons[0]
+        removed_pokemons.append(pokemons.pop(0))
         pokemons.insert(0, pokemons[-1])
-    elif index > len(pokemons) - 1:
-        captured_pokemons.append(pokemons[-1])
-        pokemons.remove(pokemons[-1])
-        pokemons.append(pokemons[0])
-    else:
-        current_pokemon_value = pokemons[index]
-        captured_pokemons.append(pokemons[index])
-        pokemons.remove(pokemons[index])
-        pokemons = [num + current_pokemon_value if num <= current_pokemon_value else num - current_pokemon_value for num in pokemons]
 
-print(sum(captured_pokemons))
+    elif current_index >= len(pokemons):
+        value_to_compare = pokemons[-1]
+        removed_pokemons.append(pokemons.pop(-1))
+        pokemons.append(pokemons[0])
+
+    else:
+        value_to_compare = pokemons[current_index]
+        removed_pokemons.append(pokemons.pop(current_index))
+
+    pokemons = increase_decrease(pokemons, value_to_compare)
+
+print(sum(removed_pokemons))
