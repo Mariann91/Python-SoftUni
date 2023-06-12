@@ -1,25 +1,19 @@
-from math import ceil
+students_count = int(input())
+course_lectures = int(input())
+additional_bonus = int(input())
 
-student_count = int(input())
-number_of_lectures = int(input())
-add_bonus = int(input())
+max_attendances = 0
+max_bonus = 0
 
-bonuses = []
-lectures = []
-for _ in range(student_count):
-  current_student = int(input())
+if course_lectures > 0:
+  
+  for _ in range(students_count):
+    student_attendances = int(input())
+  
+    total_bonus = student_attendances / course_lectures * (5 + additional_bonus)
+    if total_bonus > max_bonus:
+      max_bonus = total_bonus
+      max_attendances = student_attendances
 
-  total_bonus = ceil(current_student / number_of_lectures * (5 + add_bonus))  
-  bonuses.append(total_bonus)
-  lectures.append(current_student)
-
-if len(bonuses) > 0:
-  max_bonus = max(bonuses)
-  max_bonus_index = bonuses.index(max_bonus)
-  highest_student_lectures = lectures[max_bonus_index]
-
-else:
-  max_bonus = 0
-  highest_student_lectures = 0
-
-print(f"Max Bonus: {max_bonus}.\nThe student has attended {highest_student_lectures} lectures.")
+print(f"Max Bonus: {round(max_bonus)}.")
+print(f"The student has attended {max_attendances} lectures.")
