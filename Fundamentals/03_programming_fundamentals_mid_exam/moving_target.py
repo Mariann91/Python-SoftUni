@@ -1,5 +1,5 @@
-def check_index(command_index, input_list):
-    if 0 <= command_index < len(input_list):
+def check_index(checked_index, checked_list):
+    if 0 <= checked_index < len(checked_list):
         return True
     return False
 
@@ -26,12 +26,12 @@ while command != "End":
             print("Invalid placement!")
 
     elif command_word == "Strike":
-        start = index - value
-        end = index + value
+        start_point = index - value
+        end_point = index + value
 
-        if 0 <= start < index < end < len(targets):
-            for i in range(start, end + 1):
-                targets.pop(start)
+        if check_index(start_point, targets) and check_index(end_point, targets) and check_index(index, targets):
+            for i in range(start_point, end_point + 1):
+                targets.remove(targets[start_point])
         else:
             print("Strike missed!")
 
