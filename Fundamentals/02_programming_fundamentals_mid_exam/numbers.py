@@ -1,19 +1,18 @@
 numbers = [int(num) for num in input().split()]
 
-average = sum(numbers) // len(numbers)
+numbers = sorted(numbers, reverse=True)
+average = sum(numbers) / len(numbers)
 
-above_average = [num for num in numbers if num > average]
-sorted_above_average = sorted(above_average, reverse=True)
+top_five_average = []
+five_counter = 0
+for num in numbers:
+    if num > average:
+        top_five_average.append(num)
+        five_counter += 1
+        if five_counter == 5:
+            break
 
-top5_average = []
-for i in range(len(sorted_above_average)):
-
-    if i < 5:
-        top5_average.append(sorted_above_average[i])
-    else:
-        break
-
-if len(top5_average) == 0:
-    print("No")
+if len(top_five_average) > 0:
+    print(*top_five_average, sep=" ")
 else:
-    print(*top5_average, sep=" ")
+    print("No")
