@@ -1,21 +1,22 @@
 energy = int(input())
 
-won_battles = 0
-while True:
-  
-  needed_energy = input()
-  if needed_energy == "End of battle":
-    print(f"Won battles: {won_battles}. Energy left: {energy}" )
-    break
-    
-  needed_energy = int(needed_energy)
+distance = input()
 
-  if needed_energy <= energy:
-    won_battles += 1
-    energy -= needed_energy
-    if won_battles % 3 == 0:
-      energy += won_battles
+won_batttles = 0
+while distance != "End of battle":
+  distance = int(distance)
+
+  if distance <= energy:
+    energy -= distance
+    won_batttles += 1
+    if won_batttles % 3 == 0:
+      energy += won_batttles
   else:
-    print(f"Not enough energy! Game ends with {won_battles} won battles and {energy} energy")
+    print(f"Not enough energy! Game ends with {won_batttles} won battles and {energy} energy")
     break
+
+  distance = input()
+  
+else:
+  print(f"Won battles: {won_batttles}. Energy left: {energy}" )
     
