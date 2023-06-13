@@ -18,9 +18,6 @@ while command != "end":
         array[index1] = result
 
     elif command_word == "decrease":
-        for i in range(len(array)):
-            array[i] -= 1
+        array = [num - 1 for num in array]
 
     command = input()
-
-print(*array, sep=", ")
