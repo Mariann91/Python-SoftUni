@@ -1,38 +1,41 @@
-def check_cheat(first, second, input_list):
-    if 0 <= first < len(input_list) and 0 <= second < len(input_list) and first != second:
-        return True
+def check_for_cheat(input_index1, input_index2, input_list):
+  if input_index1 != input_index2 and 0 <= input_index1 < len(input_list) and 0 <= input_index2 < len(input_list):
     return False
-
+  return True
+    
 
 cards = input().split()
 
-indexes = input()
-
 moves = 0
-while indexes != "end":
-    index1, index2 = [int(num) for num in indexes.split()]
-    moves += 1
+while len(cards) > 0:
+  indexes = input()
 
-    if check_cheat(index1, index2, cards):
-        if cards[index1] == cards[index2]:
-            removed_card = cards[index1]
-            cards.pop(index1)
-            cards.remove(removed_card)
-            print(f"Congrats! You have found matching elements - {removed_card}!")
-        else:
-            print("Try again!")
+  if indexes == "end":
+    print("Sorry you lose :(\n", *cards, sep=" ")
+    break  
+
+  indexes = indexes.split()
+  
+  index1 = int(indexes[0])
+  index2 = int(indexes[1])
+
+  moves += 1
+  if check_for_cheat(index1, index2, cards):
+    middle_index = len(cards) // 2
+    for _ in range(2):
+      cards.insert(middle_index, f"-{moves}a")
+
+    print("Invalid input! Adding additional elements to the board")
+
+  else:
+    if cards[index1] == cards[index2]:
+      item_to_remove = cards[index1]
+      cards.pop(index1)
+      cards.remove(item_to_remove)
+      
+      print(f"Congrats! You have found matching elements - {item_to_remove}!")
     else:
-        middle_index = int(len(cards) // 2)
-        bonus_seq = f"-{moves}a"
-        for _ in range(2):
-            cards.insert(middle_index, bonus_seq)
-        print("Invalid input! Adding additional elements to the board")
+      print("Try again!")
 
-    if len(cards) == 0:
-        print(f"You have won in {moves} turns!")
-        break
-
-    indexes = input()
 else:
-    print("Sorry you lose :(")
-    print(*cards, sep=" ")
+  print(f"You have won in {moves} turns!")
