@@ -1,44 +1,41 @@
 class Zoo:
-    __animals = 0
+  __animals = 0
+  def __init__(self, name):
+    self.name = name
+    self.mammals = []
+    self.fishes = []
+    self.birds = []
 
-    def __init__(self, name):
-        self.name = name
-        self.mammals = []
-        self.birds = []
-        self.fishes = []
+  def add_animal(self, species, name):
+    if species == "mammal":
+      self.mammals.append(name)
+    elif species == "fish":
+      self.fishes.append(name)
+    elif species == "bird":
+      self.birds.append(name)
+      
+    Zoo.__animals += 1
 
-    def add_animals(self, species, name):
-        if species == "mammal":
-            self.mammals.append(name)
-        elif species == "bird":
-            self.birds.append(name)
-        elif species == "fish":
-            self.fishes.append(name)
-        Zoo.__animals += 1
+  def get_info(self, species):
+    result = ""
+    if species == "mammal":
+      result = f"Mammals in {self.name}: {', '.join(self.mammals)} \nTotal animals: {Zoo.__animals}"
+    elif species == "fish":
+      result = f"Fishes in {self.name}: {', '.join(self.fishes)} \nTotal animals: {Zoo.__animals}"
+    elif species == "bird":
+      result = f"Birds in {self.name}: {', '.join(self.birds)} \nTotal animals: {Zoo.__animals}"
 
-    def get_info(self, species):
-        info = ""
-        if species == "mammal":
-            info = f"Mammals in {self.name}: {', '.join(self.mammals)}\nTotal animals: {Zoo.__animals}"
-        elif species == "bird":
-            info = f"Birds in {self.name}: {', '.join(self.birds)}\nTotal animals: {Zoo.__animals}"
-        elif species == "fish":
-            info = f"Fishes in {self.name}: {', '.join(self.fishes)}\nTotal animals: {Zoo.__animals}"
-
-        return info
-
-
+    return result
+  
 zoo_name = input()
-interval = int(input())
+loop_interval = int(input())
 
 zoo = Zoo(zoo_name)
+  
+for _ in range(loop_interval):
+  spec, animal = input().split()
 
-for _ in range(interval):
-    animal_species, animal_name = input().split()
+  zoo.add_animal(spec, animal)
 
-    zoo.add_animals(animal_species, animal_name)
-
-called_species = input()
-
-print(zoo.get_info(called_species))
-
+final_species = input()
+print(zoo.get_info(final_species))
