@@ -1,21 +1,19 @@
-student_info = {}
+courses_info = {}
 
-info = input()
+current_course = input()
 
-while info != "end":
-  course_name, student_name = info.split(" : ")
+while current_course != "end":
+    course_name, student_name = current_course.split(" : ")
 
-  if course_name not in student_info:
-    student_info[course_name] = []
+    if course_name not in courses_info:
+        courses_info[course_name] = []
 
-  student_info[course_name].append(student_name)
+    courses_info[course_name].append(student_name)
 
-  info = input()
+    current_course = input()
 
-for course_name, student_names in student_info.items():
-  student_count = len(student_names)
-  print(f"{course_name}: {student_count}")
+for course_name, student_names in courses_info.items():
+    print(f"{course_name}: {len(student_names)}")
 
-  for student_name in student_names:
-    print(f"-- {student_name}")
+    [print(f"-- {student_name}") for student_name in student_names]
     
