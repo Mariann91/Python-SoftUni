@@ -1,40 +1,41 @@
-materials_dic = {
+key_materials = {
     "shards": 0,
     "fragments": 0,
     "motes": 0,
 }
 
-MATERIALS_LIMIT = 250
-
-break_flag = False
-while not break_flag:
+while_break = False
+while True:
     materials = input().split()
 
-    for index in range(1, len(materials), 2):
-        current_material = materials[index].lower()
-        material_quantity = int(materials[index - 1])
+    material = ""
+    for index in range(0, len(materials), 2):
+        material = materials[index + 1].lower()
+        quantity = int(materials[index])
 
-        if current_material in materials_dic:
-            materials_dic[current_material] += material_quantity
+        if material in key_materials:
+            
+            key_materials[material] += quantity
+            if material == "shards" and key_materials[material] >= 250:
+                print("Shadowmourne obtained!")
+                while_break = True
+                break
+
+            if material == "fragments" and key_materials[material] >= 250:
+                print("Valanyr obtained!")
+                while_break = True
+                break
+
+            if material == "motes" and key_materials[material] >= 250:
+                print("Dragonwrath obtained!")
+                while_break = True
+                break
         else:
-            materials_dic[current_material] = material_quantity
+            key_materials[material] = quantity
 
-        if materials_dic["shards"] >= MATERIALS_LIMIT or \
-                materials_dic["fragments"] >= MATERIALS_LIMIT or materials_dic["motes"] >= MATERIALS_LIMIT:
-            break_flag = True
-            break
+    if while_break:
+        key_materials[material] -= 250
+        break
 
-if materials_dic["shards"] >= MATERIALS_LIMIT:
-    materials_dic["shards"] -= MATERIALS_LIMIT
-    print("Shadowmourne obtained!")
-
-elif materials_dic["fragments"] >= MATERIALS_LIMIT:
-    materials_dic["fragments"] -= MATERIALS_LIMIT
-    print("Valanyr obtained!")
-
-elif materials_dic["motes"] >= MATERIALS_LIMIT:
-    materials_dic["motes"] -= MATERIALS_LIMIT
-    print("Dragonwrath obtained!")
-
-for material, quantity in materials_dic.items():
+for material, quantity in key_materials.items():
     print(f"{material}: {quantity}")
