@@ -1,32 +1,59 @@
-submissions_info = {}
-language_info = {}
+exam_info = {}
+submission_count = {}
 
 while True:
-  submission = input()
 
-  if submission == "exam finished":
+  course_info = input()
+
+  if course_info == "exam finished":
     break
-    
-  submission = submission.split("-")
-  name = submission[0]
 
-  if submission[1] == "banned":
-    submissions_info.pop(name)
-    continue
+  course_info = course_info.split("-")
+  name = course_info[0]
+  language = course_info[1]
 
-  language = submission[1]
-  current_submission = int(submission[2])
-  
-  if name not in submissions_info or submissions_info[name] < current_submission:
-    submissions_info[name] = current_submission
-
-  if language in language_info:
-    language_info[language] += 1
+  if language == "banned":
+    if name in exam_info:
+      exam_info.pop(name)
+    else:
+      continue
   else:
-    language_info[language] = 1
+    points = int(course_info[2])
+    if language not in submission_count:
+      submission_count[language] = 1
+    else:
+      submission_count[language] += 1
+    
+    if len(exam_info) < 1:
+       exam_info = {
+        name: {
+          language: [points]
+        }
+      }
+      
+    elif name not in exam_info:
+
+      current_information = {
+        name: {
+          language: [points]
+        }
+      }
+      exam_info.update(current_information)
+        
+    else:
+      if language in exam_info[name]:
+        exam_info[name][language].append(points)
+      else:
+        exam_info[name][language] = [points]
 
 print("Results:")
-[print(f"{name} | {score}") for name, score in submissions_info.items()]
-print("Submissions:")
 
-[print(f"{language} - {count}") for language, count in language_info.items()]
+for item in exam_info:
+  print(item, end=" | ")
+  for key, value in exam_info[item].items():
+    print(max(value))
+    break
+    
+print("Submissions:")
+for language, count in submission_count.items():
+  print(f"{language} - {count}")
