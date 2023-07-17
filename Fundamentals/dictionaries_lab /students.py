@@ -1,27 +1,36 @@
-student_dic = {}
+students_info = {}
 
-while True:
-  wanted_course = input()
+info = input()
 
-  if ":" not in wanted_course:
-    break
-  
-  name, id, course = wanted_course.split(":")
-  
-  if " " in course:
-    course = course.replace(" ", "_")
+while ":" in info:
+  name, student_id, course = info.split(":")
 
-  if course not in student_dic:   
-    student_dic[course] = [name, id]
+  if not students_info:
+    students_info = {
+      course: {
+        name: student_id
+      }
+    }
   else:
-    name_id = [name, id]
-    student_dic[course].extend(name_id)
 
-wanted_course_student_list = student_dic[wanted_course]
+    if course not in students_info:
+      current_info = {
+        course: {
+          name: student_id
+        }
+      }
+      students_info.update(current_info)
+    else:
+      current_info = {
+        name: student_id
+      }
+      students_info[course].update(current_info)
+  info = input()
 
-for index in range(0, len(wanted_course_student_list), 2):
-  student_name = student_dic[wanted_course][index]
-  
-  student_id = student_dic[wanted_course][index + 1]
-  
-  print(f"{student_name} - {student_id}")
+searched_course = info
+
+if "_" in searched_course:
+  searched_course = searched_course.replace("_", " ")
+
+for name, student_id in students_info[searched_course].items():
+  print(f"{name} - {student_id}")
