@@ -1,16 +1,15 @@
-words_count = int(input())
+words_info = {}
 
-words_dic = {}
-for _ in range(words_count):
+interval = int(input())
+
+for _ in range(interval):
   word = input()
   synonym = input()
 
-  if word not in words_dic:
-    words_dic[word] = [synonym]
-  else:
-    words_dic[word].append(synonym)
+  if word not in words_info:
+    words_info[word] = []
+  words_info[word].append(synonym)  
 
-for key, value in words_dic.items():
-  synonyms = ", ".join(value)
-  print(f"{key} - {synonyms}")
+for word, synonyms in words_info.items():
+  print(f"{word} - {', '.join(synonyms)}")
   
