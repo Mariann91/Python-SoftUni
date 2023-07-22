@@ -1,10 +1,6 @@
 import re
-line = input()
-regex = r'\+359(\s|-)2\1\d{3}\1\d{4}\b'
-text = re.finditer(regex, line)
-matches = []
 
-for i in text:
-    matches.append(i.group())
-    
-print(', '.join(matches))
+pattern = r"\+359 2 \d{3} \d{4}\b|\+359-2-\d{3}-\d{4}\b"
+text = input()
+result = re.findall(pattern, text)
+print(", ".join(result))
