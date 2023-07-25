@@ -1,65 +1,48 @@
-collection_data = {}
+pieces_info = {}
 
 interval = int(input())
 
 for _ in range(interval):
   piece, composer, key = input().split("|")
+
+  pieces_info[piece] = [composer, key]
+
+while True:
+  command_line = input()
+
+  if command_line == "Stop":
+    break
+
+  line = command_line.split("|")
+  command = line[0]
   
-  if not collection_data:
-    collection_data = {
-      piece : {
-        composer : key
-      }
-    }
+  if command == "Add":
+    piece = line[1]
+    composer = line[2]
+    key = line[3]
 
-  else:
-    current_information = {
-      piece : {
-        composer : key
-      }
-    }
-
-    collection_data.update(current_information)
-
-commands = input()
-
-while commands != "Stop":
-  commands = commands.split("|")
-  command_word = commands[0]
-  command_piece = commands[1]
-
-  if command_word == "Add":
-    command_composer = commands[2]
-    command_key = commands[3]
-    
-    if command_piece in collection_data:
-      print(f"{command_piece} is already in the collection!")
+    if piece not in pieces_info:
+      pieces_info[piece] = [composer, key]
+      print(f"{piece} by {composer} in {key} added to the collection!")
     else:
-      added_info = {
-        command_piece: {
-          command_composer: command_key,
-        }
-      }
-      collection_data.update(added_info)
-      print(f"{command_piece} by {command_composer} in {command_key} added to the collection!")
-
-  elif command_word == "Remove":
-
-    if command_piece in collection_data:   
-      collection_data.pop(command_piece)
-      print(f"Successfully removed {command_piece}!")
+      print(f"{piece} is already in the collection!")
+  elif command == "Remove":
+    piece = line[1]
+    if piece in pieces_info:
+      pieces_info.pop(piece)
+      print(f"Successfully removed {piece}!")
     else:
-      print(f"Invalid operation! {command_piece} does not exist in the collection.")
+      print(f"Invalid operation! {piece} does not exist in the collection.")
 
-  elif command_word == "ChangeKey":
-    command_new_key = commands[2]
-    old_key = ''.join([value for value in collection_data[command_piece].values()])
+  elif command == "ChangeKey":
+    piece = line[1]
+    new_key = line[2]
 
-    if command_piece in collection_data:
-      for key, value in collection_data[command_piece].items():
-        if collection_data[command_piece][key] == old_key:
-          collection_data[command_piece][key] = command_new_key
-          break
-      print(f"Changed the key of {command_piece} to {command_new_key}!")
+    if piece in pieces_info:
+      pieces_info[piece][1] = new_key
+      print(f"Changed the key of {piece} to {new_key}!")
     else:
-      print(f"Invalid operation! {command_piece} does not exist in the collection.")
+      print(f"Invalid operation! {piece} does not exist in the collection.")
+
+for item, values in pieces_info.items():
+  print(f"{item} -> Composer: {values[0]}, Key: {values[1]}")
