@@ -1,25 +1,17 @@
-stack = []
-n = int(input())
+from collections import deque
 
-for _ in range(n):
-  query = input().split()
-  query_type = query[0]
+numbers = deque()
 
-  if query_type == "1":
-    number = int(query[1])
-    stack.append(number)
+map_functions = {
+    1: lambda x: numbers.append(x[1]),
+    2: lambda x: numbers.pop() if numbers else None,
+    3: lambda x: print(max(numbers)) if numbers else None,
+    4: lambda x: print(min(numbers)) if numbers else None,
+}
 
-  if len(stack) > 0:
-    if query_type == "2":
-      stack.pop()
-    elif query_type == "3":
-      print(max(stack))
-    elif query_type == "4":
-      print(min(stack))
- 
-new_stack = []
+for _ in range(int(input())):
+    numbers_data = [int(num) for num in input().split()]
+    map_functions[numbers_data[0]](numbers_data)
 
-for _ in range(len(stack)):
-  new_stack.append(stack.pop())
-
-print(*new_stack, sep=", ")
+numbers.reverse()
+print(*numbers, sep=", ")
