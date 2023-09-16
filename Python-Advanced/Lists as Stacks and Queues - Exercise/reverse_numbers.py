@@ -1,8 +1,6 @@
-numbers = input().split()
+from collections import deque
 
-stack = []
+stack = deque(input().split())
+stack.reverse()
 
-while len(numbers) > 0:
-  stack.append(numbers.pop())
-
-print(*stack, sep=" ")
+print(" ".join(stack))
