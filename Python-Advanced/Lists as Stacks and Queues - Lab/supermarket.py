@@ -1,20 +1,19 @@
 from collections import deque
 
+queue = deque()
 command = input()
 
-queue = deque()
-
 while command != "End":
-  
+
   if command == "Paid":
-    for _ in range(len(queue)):
-      print(queue.popleft())
+    [print(queue.popleft()) for _ in range(len(queue))]
+      
   else:
     name = command
     queue.append(name)
 
   command = input()
 
-count = len(list(queue))
+count = len(queue)
 
 print(f"{count} people remaining.")
