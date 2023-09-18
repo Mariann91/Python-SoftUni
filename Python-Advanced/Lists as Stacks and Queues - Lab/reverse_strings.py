@@ -1,4 +1,6 @@
-stack = list(input())
+from collections import deque
 
-while stack:
-  print(stack.pop(), end="")
+stack = deque(list(input()))
+stack.reverse()
+
+print("".join(stack))
