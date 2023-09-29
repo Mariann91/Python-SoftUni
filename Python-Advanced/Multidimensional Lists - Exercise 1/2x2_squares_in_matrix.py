@@ -1,7 +1,7 @@
 matrix_rows, matrix_cols = [int(num) for num in input().split()]
 
 matrix = [input().split() for _ in range(matrix_rows)]
-equal_cells = []
+equal_cells = 0
 
 for row in range(matrix_rows):
 
@@ -14,6 +14,6 @@ for row in range(matrix_rows):
             fourth = matrix[row + 1][col + 1]
 
             if first == second and second == third and third == fourth:
-                equal_cells.append([first, second, third, fourth])
+                equal_cells += 1
 
-print(len(equal_cells))
+print(equal_cells)
