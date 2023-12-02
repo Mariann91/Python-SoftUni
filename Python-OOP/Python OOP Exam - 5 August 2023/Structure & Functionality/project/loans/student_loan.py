@@ -1,12 +1,10 @@
 from project.loans.base_loan import BaseLoan
 
 
-class StudentLoan(BaseLoan):
-    def __init__(self, interest_rate: float = 1.5, amount: float = 2000):
-        super().__init__(interest_rate, amount)
-        self.interest_rate = interest_rate
-        self.amount = amount
+class MortgageLoan(BaseLoan):
 
-    @property
-    def interest_rate_added_percent(self):
-        return 0.2
+    def __init__(self):
+        super().__init__(interest_rate=3.5, amount=50_000)
+
+    def increase_interest_rate(self):
+        self.interest_rate += 0.5
