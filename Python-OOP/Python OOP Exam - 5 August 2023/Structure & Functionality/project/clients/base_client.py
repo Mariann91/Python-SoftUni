@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseClient(ABC):
-    def __init__(self, name: str, client_id: str, income: float, interest: float) -> None:
+    def __init__(self, name: str, client_id: str, income: float, interest: float):
         self.name = name
         self.client_id = client_id
         self.income = income
@@ -27,16 +27,16 @@ class BaseClient(ABC):
 
     @client_id.setter
     def client_id(self, value):
-
+        
         if len(value) != 10:
             raise ValueError("Client ID should be 10 symbols long!")
-
+        
         self.__client_id = value
-
+    
     @property
     def income(self):
         return self.__income
-
+    
     @income.setter
     def income(self, value):
 
@@ -45,11 +45,7 @@ class BaseClient(ABC):
 
         self.__income = value
 
-    @property
     @abstractmethod
-    def client_interest_increase(self):
-        ...
-    
     def increase_clients_interest(self):
-        self.interest += self.client_interest_increase
+        ...
         
