@@ -1,15 +1,13 @@
-current_version = [int(num) for num in input().split(".")]
+first, second, third = [int(num) for num in input().split(".")]
 
-for i in range(len(current_version) - 1, -1, -1):
-    if current_version[i] < 9:
-        current_version[i] += 1
+third += 1
 
-    else:
-        current_version[i] = 0
-        current_version[i - 1] += 1
-        if current_version[i - 1] == 10:
-            current_version[i - 1] = 0
-            current_version[i - 2] += 1
-    break
+if third > 9:
+    third = 0
+    second += 1
+    
+    if second > 9:
+        second = 0
+        first += 1
 
-print(*current_version, sep=".")
+print(f"{first}.{second}.{third}")
