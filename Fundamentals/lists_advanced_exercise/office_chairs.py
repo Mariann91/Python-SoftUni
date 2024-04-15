@@ -1,17 +1,19 @@
-interval = int(input())
+total_free_chairs = 0
+enough_free_chairs = True
 
-free_chairs = 0
-flag = True
-for index in range(1, interval + 1):
-    chair_info = input().split()
-    available_chairs = len(chair_info[0])
-    needed_chairs = int(chair_info[1])
-
-    if available_chairs < needed_chairs:
-        print(f"{needed_chairs - available_chairs} more chairs needed in room {index}")
-        flag = False
+for room_number in range(1, int(input()) + 1):
+    
+    room, visitors = input().split()
+    
+    room_chairs = len(list(room))
+    int_vistors = int(visitors)
+    
+    
+    if room_chairs >= int_vistors:
+        total_free_chairs += room_chairs - int_vistors 
     else:
-        free_chairs += available_chairs - needed_chairs
-
-if flag:
-    print(f"Game On, {free_chairs} free chairs left")
+        enough_free_chairs = False
+        print(f"{int_vistors - room_chairs} more chairs needed in room {room_number}")
+        
+if enough_free_chairs:
+    print(f"Game On, {total_free_chairs} free chairs left")
