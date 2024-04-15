@@ -1,13 +1,23 @@
 numbers = [int(num) for num in input().split(", ")]
 
-positive = [num for num in numbers if num >= 0]
-negative = [num for num in numbers if num < 0]
-even = [num for num in numbers if num % 2 == 0]
-odd = [num for num in numbers if num % 2 != 0]
+numbers_info = {
+    "Positive": [],
+    "Negative": [],
+    "Even": [],
+    "Odd": [],
+}
 
-all_lists = [positive, negative, even, odd]
+for num in numbers:
+    
+    if num >= 0:
+        numbers_info["Positive"].append(num)
+    else:
+        numbers_info["Negative"].append(num)
+    
+    if num % 2 == 0:
+        numbers_info["Even"].append(num)
+    else:
+        numbers_info["Odd"].append(num)
 
-numbers = [[str(num) for num in sublist] for sublist in all_lists]
-
-print(f"Positive: {', '.join(numbers[0])}\nNegative: {', '.join(numbers[1])}"
-      f"\nEven: {', '.join(numbers[2])}\nOdd: {', '.join(numbers[3])}")
+for item, values in numbers_info.items():
+    print(f"{item}: {', '.join(str(num) for num in values)}")
